@@ -26,7 +26,7 @@
 		</div>
 		<div class="flex flex-col">
 			<h4 style="color: white;">📍 RG:</h4>
-			<input style=" border-radius: 5px;" class="py-2 px-2 border border-solid" type="text" id="rg" required="">
+			<input style=" border-radius: 5px;" class="py-2 px-2 border border-solid" type="number" id="rg" required="">
 		</div>
 		
 		
@@ -346,9 +346,12 @@
 		</div>
 		<div class="col col-md-12">
 			<input id="Art. 0.47 - PORTE ILEGAL DE ARMA LEVE" type="checkbox" class="form-check-input" name="crime"
-				value="20|0|35000" onclick="calcular()">
+				value="20|0|35000"  onclick="toggleInput('arma-ilegal', this.checked)">
 			<label class="form-check-label" title="Art. 0.47 - PORTE ILEGAL DE ARMA LEVE"
 				for="Art. 0.47 - PORTE ILEGAL DE ARMA LEVE">Art. 0.47 - PORTE ILEGAL DE ARMA LEVE</label>
+				<font color="#275c3d">
+					<input type="number" id="arma-ilegal" placeholder="Quantidade de arma leve" name="arma-ilegal" class="form-control"
+						onchange="calcular()" size="9"  style="display: none;">
 		</div>
 		<div class="col col-md-12">
 			<input id="Art. 0.48 - ESTELIONATO" type="checkbox" class="form-check-input" name="crime"
@@ -358,16 +361,22 @@
 		</div>
 		<div class="col col-md-12">
 			<input id="Art. 0.49 - PORTE ILEGAL DE ARMA PESADA" type="checkbox" class="form-check-input" name="crime"
-				value="30|0|45000" onclick="calcular()">
+				value="30|0|45000"  onclick="toggleInput('arma-ilegal', this.checked)">
 			<label class="form-check-label" title="Art. 0.49 - PORTE ILEGAL DE ARMA PESADA"
 				for="Art. 0.49 - PORTE ILEGAL DE ARMA PESADA">Art. 0.49 - PORTE ILEGAL DE ARMA PESADA</label>
+				<font color="#275c3d">
+					<input type="number" id="arma-ilegal" placeholder="Quantidade de arma pesada" name="arma-ilegal" class="form-control"
+						onchange="calcular()" size="9"  style="display: none;">
 		</div>
 		<!-- Continue a partir daqui com os números sequenciais dos artigos -->
 		<div class="col col-md-12">
 			<input id="Art. 0.50 - TRÁFICO DE DROGAS (A PARTIR DE 6 UNIDADES)" type="checkbox" class="form-check-input" name="crime"
-				value="15|0|45000" onclick="calcular()">
+				value="15|0|45000" onclick="toggleInput('drogas-qtd', this.checked)">
 			<label class="form-check-label" title="Art. 0.50 - TRÁFICO DE DROGAS (A PARTIR DE 6 UNIDADES)"
 				for="Art. 0.50 - TRÁFICO DE DROGAS (A PARTIR DE 6 UNIDADES)">Art. 0.50 - TRÁFICO DE DROGAS (A PARTIR DE 6 UNIDADES)</label>
+			<font color="#275c3d">
+			<input type="number" id="drogas-qtd" placeholder="Quantidade de Drogas" name="drogas-qtd" class="form-control"
+				onchange="calcular()" size="9" style="display: none;">
 		</div>
 		<div class="col col-md-12">
 			<input id="Art. 0.51 - CONSUMO PRÓPRIO DE DROGAS (5 UNIDADES)" type="checkbox" class="form-check-input" name="crime"
@@ -378,21 +387,30 @@
 		
 		<div class="col col-md-12">
 			<input id="Art. 0.53 - TRÁFICO DE ORGÃOS" type="checkbox" class="form-check-input" name="crime"
-				value="35|0|35000" onclick="calcular()">
+				value="35|0|35000" onclick="toggleInput('orgao-qtd', this.checked)">>
 			<label class="form-check-label" title="Art. 0.53 - TRÁFICO DE ORGÃOS"
 				for="Art. 0.53 - TRÁFICO DE ORGÃOS">Art. 0.53 - TRÁFICO DE ORGÃOS</label>
+				<font color="#275c3d">
+					<input type="number" id="orgao-qtd" placeholder="Quantidade de orgão" name="orgao-qtd" class="form-control"
+						onchange="calcular()" size="9" style="display: none;">
 		</div>
 		<div class="col col-md-12">
 			<input id="Art. 0.54 - TRÁFICO DE MUNIÇÃO" type="checkbox" class="form-check-input" name="crime"
-				value="20|0|40000" onclick="calcular()">
+				value="20|0|40000" onclick="calcular()"  onclick="toggleInput('municao-qtd', this.checked)">
 			<label class="form-check-label" title="Art. 0.54 - TRÁFICO DE MUNIÇÃO"
 			 for="Art. 0.54 - TRÁFICO DE MUNIÇÃO">Art. 0.54 - TRÁFICO DE MUNIÇÃO</label>
+			 <font color="#275c3d">
+				<input type="number" id="municao-qtd" placeholder="Quantidade de munição" name="municao-qtd" class="form-control"
+					onchange="calcular()" size="9" style="display: none;">
 		</div>
 		<div class="col col-md-12">
 			<input id="Art. 0.55 - TRÁFICO DE ARMAS" type="checkbox" class="form-check-input" name="crime"
-				value="20|0|40000" onclick="calcular()">
+				value="20|0|40000" onclick="calcular()"  onclick="toggleInput('arma-trafico', this.checked)">
 			<label class="form-check-label" title="Art. 0.55 - TRÁFICO DE ARMAS"
 			 for="Art. 0.55 - TRÁFICO DE ARMAS">Art. 0.55 - TRÁFICO DE ARMAS</label>
+			 <font color="#275c3d">
+				<input type="number" id="arma-trafico" placeholder="Quandidade de armas" name="arma-trafico" class="form-control"
+					onchange="calcular()" size="9"  style="display: none;">
 		</div>
 		<div class="col col-md-12">
 			<input id="Art. 0.56 - ABUSO DE AUTORIDADE" type="checkbox" class="form-check-input" name="crime"
@@ -1144,7 +1162,31 @@ if (sujo >= 0) {
     Fianca = 45000
 }
 
-			
+var municaoqtd = parseInt(document.getElementById("municao-qtd").value);
+
+    if (!isNaN(municaoqtd)) {
+        var mesesExtras = Math.floor(municaoqtd / 200) * 3;
+        Pena += mesesExtras;
+    }
+
+var drogasQtd = parseInt(document.getElementById("drogas-qtd").value);
+if (!isNaN(drogasQtd)) {
+    Pena += 2 * drogasQtd;
+}
+
+var orgaosQTD = parseInt(document.getElementById("orgao-qtd").value);
+if (!isNaN(orgaosQTD)) {
+    Pena += 10 * orgaosQTD;
+}
+
+var armasIlegais = parseInt(document.getElementById("arma-ilegal").value);
+if (!isNaN(armasIlegais)) {
+    Pena += 10 * armasIlegais;
+}
+var armasTrafico = parseInt(document.getElementById("arma-trafico").value);
+if (!isNaN(armasTrafico)) {
+    Pena += 1 * armasTrafico;
+}
 			
 			var fianca_txt = document.getElementById("fianca");
 			var pena_txt = document.getElementById("pena");
@@ -1181,7 +1223,7 @@ if (sujo >= 0) {
 			if (pena_txt.value > 60) {
     pena_txt.value = 60;
 }
-		
+
 		}
 
 
@@ -1334,6 +1376,19 @@ if (sujo >= 0) {
 		function tirarBloco() {
 			$("#copiado")[0].style.display = 'none';
 		}
+
+
+		function toggleInput(inputId, isChecked) {
+        var input = document.getElementById(inputId);
+        // Se o checkbox estiver marcado, exibe o input; caso contrário, oculta-o
+        if (isChecked) {
+            input.style.display = "block";
+        } else {
+            input.style.display = "none";
+        }
+        // Chama a função calcular()
+        calcular();
+    }
 	</script>
 	
 
