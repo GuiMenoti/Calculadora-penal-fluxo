@@ -20,10 +20,15 @@
 	</div>
 
 	<div class="fc quadrotopo ">
-		<div style="margin: auto;width: 30%;flex: 0 0 auto;">
-			<h3 style="font-size: 25px; font-weight: 700;">RG do Advogado</h3>
-			<input type="number" placeholder="RG DO ADVOGADO" id="adv_rg" name="adv_rg" class="inputnumber form-control" size="8" style="margin-right:10px">
+		<div class="flex flex-col">
+			<h4 style="color: white;">📍 NOME INDIVÍDUO:</h4>
+			<input style=" border-radius: 5px;" class="py-2 px-2 border border-solid" type="text" id="nome" required="">
 		</div>
+		<div class="flex flex-col">
+			<h4 style="color: white;">📍 RG:</h4>
+			<input style=" border-radius: 5px;" class="py-2 px-2 border border-solid" type="text" id="rg" required="">
+		</div>
+		
 		
 	</div>
 
@@ -568,15 +573,19 @@
 			<input hidden id="fianca-hidden">
 			<br>
 
-			<button class="btn btn-danger" onclick="limpar()"><i class="bi bi-trash"></i> Limpar</button>
+			<button style="background-color: rgb(255, 62, 62); color: white;" class="btn btn-danger" onclick="limpar()"><i class="bi bi-trash"></i> Limpar</button>
 
 
 			<br>
 			<br>
 			<div>
-				<h3>RG DOS AUXILIARES</h3>
+				<h3 style="font-size: 25px; font-weight: 700;">RG DOS AUXILIARES</h3>
 				<input type="text" placeholder="RG DOS AUXILIARES" id="rg_oficiais" name="rg_oficiais" class="form-control" size="8" style="margin-right:10px">
 			</div>
+			
+				<h3 style="font-size: 25px; font-weight: 700;" >RG do Advogado</h3>
+				<input type="number" placeholder="RG DO ADVOGADO" id="adv_rg" name="adv_rg" class="inputnumber form-control" size="8" style="margin-right:10px">
+			
 			<br>
 
 				<h3>CRIMES (ARTIGOS SELECIONADOS):</h3>
@@ -589,7 +598,7 @@
 					<br>
 					
 
-				<br> <button onclick="copy()" class="btn btn-success" id="copy"> <i class="bi bi-clipboard"></i> Copiar</button>
+				<br> <button style="background-color: rgb(2, 184, 2); color: white;" onclick="copy()" class="btn btn-success" id="copy"> <i class="bi bi-clipboard"></i> Copiar</button>
 						
 				<div class="alert alert-success" id="copiado" style="display: none;" role="alert">
 					Copiado com sucesso
@@ -1167,10 +1176,6 @@ if (sujo >= 0) {
 		}
 
 
-        function copy() {
-			alert("Mensagem copiada com sucesso!!!")
-		}
-
 
 
 		function limpar() {
@@ -1236,6 +1241,9 @@ if (sujo >= 0) {
             }
         }
 
+        var nameIndividuo = document.getElementById("nome").value;
+		var rgIndividuo = document.getElementById("rg").value;
+        var pena_txt = document.getElementById("pena").value;
         var text = document.getElementById('discord-text');
         var porte = '';
         var fianca = '';
@@ -1253,26 +1261,32 @@ if (sujo >= 0) {
             porte = "Não";
         }
 
-        // Montar o texto para a área de transferência
+       
 		if(atenuante != ""){
     text.innerHTML = "```yaml"
-        +"\n" + $(".TextoArtigos").val()
-        +"\n📜 ATENUANTES:\n" + atenuante
+	    +"\n📋 RG DO INDÍVIDUO:" + rgIndividuo
+	    +"\n🕴 INDÍVIDUO:" + nameIndividuo +"\n\n"
+        +"\n" + $(".TextoArtigos").val() +"\n"
+        +"\n📜 ATENUANTES:" + atenuante
         +"\n📋 PORTE DE ARMA: " + porte 
         +"\n💸 FIANÇA: " + fianca 
+		+"\n💣 PENA:" + pena_txt
         +"\n👮‍♂️ RG DOS OFICIAIS: " + $("#rg_oficiais").val() 
         +"\n👨‍⚖️ ADVOGADO:" + $("#adv_rg").val() + "(RG)"
-        +"\n\n" + $("#summary-text").val() // Adicionar o texto adicional aqui
+        +"\n\n" + $("#summary-text").val() 
         +"\n```";
 } else {
     text.innerHTML ="```yaml"
-	+"\n" + $(".TextoArtigos").val()
-        +"\n📜 ATENUANTES:\n" + atenuante
+	+"\n📋 RG DO INDÍVIDUO:" + rgIndividuo
+	    +"\n🕴 INDÍVIDUO:" + nameIndividuo +"\n\n"
+	+"\n" + $(".TextoArtigos").val()+ "\n"
+        +"\n📜 ATENUANTES:" + atenuante
         +"\n📋 PORTE DE ARMA: " + porte 
         +"\n💸 FIANÇA: " + fianca 
+		+"\n💣 PENA:" + pena_txt 
         +"\n👮‍♂️ RG DOS OFICIAIS: " + $("#rg_oficiais").val() 
         +"\n👨‍⚖️ ADVOGADO:" + $("#adv_rg").val() + "(RG)"
-        +"\n\n" + $("#summary-text").val() // Adicionar o texto adicional aqui
+        +"\n\n" + $("#summary-text").val() 
         +"\n```";
 }
         // Copiar o texto para a área de transferência
